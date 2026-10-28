@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS sublyime_world (
+    id TINYINT UNSIGNED NOT NULL PRIMARY KEY,
+    map_seed INT UNSIGNED NOT NULL,
+    state_json LONGTEXT NOT NULL,
+    visitors BIGINT UNSIGNED NOT NULL DEFAULT 0,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS sublyime_rate_limits (
+    client_hash CHAR(64) NOT NULL PRIMARY KEY,
+    window_started DATETIME NOT NULL,
+    request_count SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+    INDEX idx_sublyime_rate_window (window_started)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f1eb">
+    <meta name="description" content="Meet Sublyime, a little digital creature making a home on the web.">
+    <title>Sublyime — a little life on the web</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+    <script src="world.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="wordmark" href="#home" aria-label="Sublyime home">
+          <span class="wordmark-mark" aria-hidden="true">✳</span>
+          <span>sublyime</span>
+        </a>
+        <span class="header-note"><span class="live-dot" aria-hidden="true"></span> a small life, unfolding</span>
+        <a class="header-link" href="#about">get to know it <span aria-hidden="true">↗</span></a>
+      </header>
+
+      <main id="home">
+        <section class="intro" aria-labelledby="intro-title">
+          <div class="intro-copy">
+            <p class="eyebrow"><span aria-hidden="true">✳</span> A creature of its own little corner of the internet</p>
+            <h1 id="intro-title">Hello, little<br><span>elsewhere.</span></h1>
+            <p class="intro-description">Sublyime wanders its little world, follows its own changing needs, makes things, and keeps the skills visitors share close.</p>
+            <a class="text-link" href="#visit">Come say hello <span aria-hidden="true">↓</span></a>
+          </div>
+
+          <div class="creature-stage" aria-label="Sublyime's little world. Choose a place to visit.">
+            <div class="world-field" id="world-field" aria-label="Sublyime's habitat">
+              <button class="place place-garden" type="button" data-place="garden"><span aria-hidden="true">❋</span><span>moss garden</span></button>
+              <button class="place place-pond" type="button" data-place="pond"><span aria-hidden="true">◌</span><span>moon pond</span></button>
+              <button class="place place-nook" type="button" data-place="nook"><span aria-hidden="true">⌂</span><span>resting nook</span></button>
+              <button class="place place-window" type="button" data-place="window"><span aria-hidden="true">▤</span><span>rain window</span></button>
+              <button class="place place-workshop" type="button" data-place="workshop"><span aria-hidden="true">✳</span><span>making table</span></button>
+              <div class="thought-bubble" id="thought-bubble" aria-live="polite"></div>
+              <div class="creature" id="creature" aria-hidden="true">
+                <span class="ear ear-left"></span>
+                <span class="ear ear-right"></span>
+                <span class="creature-face">
+                  <span class="eye eye-left"></span>
+                  <span class="eye eye-right"></span>
+                  <span class="cheek cheek-left"></span>
+                  <span class="cheek cheek-right"></span>
+                  <span class="mouth"></span>
+                </span>
+                <span class="creature-feet"><i></i><i></i></span>
+              </div>
+            </div>
+            <div class="orbit orbit-one" aria-hidden="true"></div>
+            <div class="orbit orbit-two" aria-hidden="true"></div>
+            <span class="spark spark-one" aria-hidden="true">✦</span>
+            <span class="spark spark-two" aria-hidden="true">✳</span>
+            <span class="spark spark-three" aria-hidden="true">·</span>
+            <div class="creature-caption">
+              <span class="caption-name">Sublyime</span>
+              <span class="caption-status"><span class="live-dot" aria-hidden="true"></span> <span id="creature-status">waking up in its little world</span></span>
+            </div>
+            <span class="stage-label" id="location-label">moss garden · a soft place to become</span>
+          </div>
+        </section>
+
+        <section class="adventure-section" id="world" aria-labelledby="world-title">
+          <div class="adventure-heading">
+            <div>
+              <p class="eyebrow">a world growing around Sublyime</p>
+              <h2 id="world-title">The little elsewhere<span class="heading-period">.</span></h2>
+            </div>
+            <p class="world-status"><span class="live-dot" aria-hidden="true"></span><span id="world-status">Preparing a place for you…</span></p>
+          </div>
+          <div class="game-frame">
+            <canvas id="world-canvas" width="900" height="576" tabindex="0" aria-label="Top-down view of Sublyime's world. Use arrow keys or WASD to walk. Press Enter or Space near Sublyime or a glowing place to interact."></canvas>
+            <div class="world-hud"><span class="hud-dot"></span><span id="world-location">A meadow beyond the window</span><span class="hud-divider">·</span><span id="world-visitors">A world in the making</span></div>
+          </div>
+          <div class="game-controls">
+            <div class="movement-pad" aria-label="Touch movement controls">
+              <button type="button" class="move-button move-up" data-move="up" aria-label="Walk up">↑</button>
+              <button type="button" class="move-button move-left" data-move="left" aria-label="Walk left">←</button>
+              <button type="button" class="move-button move-down" data-move="down" aria-label="Walk down">↓</button>
+              <button type="button" class="move-button move-right" data-move="right" aria-label="Walk right">→</button>
+            </div>
+            <p class="control-hint"><strong>Explore:</strong> arrow keys or WASD <span>·</span> <strong>Interact:</strong> Enter or Space near a friend or glowing place</p>
+            <button type="button" class="interact-button" id="world-interact"><span aria-hidden="true">✳</span> Say hello</button>
+          </div>
+          <p class="world-story" id="world-story" aria-live="polite">A path winds through the meadow. The little lights might have something to tell you.</p>
+        </section>
+
+        <section class="creature-note" aria-labelledby="note-title">
+          <div class="note-symbol" aria-hidden="true">“</div>
+          <div>
+            <p class="eyebrow">a thought from Sublyime</p>
+            <h2 id="note-title"></h2>
+          </div>
+          <span class="note-date" id="today-label"></span>
+        </section>
+
+        <section class="needs-section" aria-labelledby="needs-title">
+          <div class="needs-heading">
+            <div>
+              <p class="eyebrow">a little glimpse inside</p>
+              <h2 id="needs-title">How Sublyime is feeling<span class="heading-period">.</span></h2>
+            </div>
+            <p class="current-want"><span class="want-spark" aria-hidden="true">✳</span><span id="current-want"></span></p>
+          </div>
+          <div class="needs-grid" id="needs-grid"></div>
+          <p class="needs-note">Its feelings are part of this local simulation—not sentience or a real AI mind.</p>
+        </section>
+
+        <section class="activity-section" id="work" aria-labelledby="work-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">little things, made along the way</p>
+              <h2 id="work-title">The making place<span class="heading-period">.</span></h2>
+            </div>
+            <button class="button button-dark" id="make-work" type="button"><span aria-hidden="true">✳</span> Make a little thing</button>
+          </div>
+          <div class="work-grid" id="work-grid" aria-live="polite"></div>
+          <p class="activity-hint"><span class="live-dot" aria-hidden="true"></span> Sometimes Sublyime makes something on its own while you’re here.</p>
+        </section>
+
+        <section class="visit-section" id="visit" aria-labelledby="visit-title">
+          <div class="visit-intro">
+            <p class="eyebrow">the best things are learned together</p>
+            <h2 id="visit-title">Bring a little<br><span>something.</span></h2>
+            <p>Teach Sublyime a skill you know, or leave a wish for its tiny future. It keeps both close.</p>
+            <div class="local-note">
+              <span class="local-icon" aria-hidden="true">⌂</span>
+              <p><strong id="storage-note-title">A little world on this device.</strong><br><span id="storage-note-copy">Skills, wishes, and visits stay in this browser preview. Gemini is opt-in when available.</span></p>
+            </div>
+            <div class="ai-consent">
+              <label for="ai-consent">
+                <input id="ai-consent" type="checkbox" disabled>
+                <span><strong>Try Gemini-generated thoughts</strong><br>If enabled, your shared skills, wishes, and Sublyime’s needs are sent to Google Gemini. Don’t share private information.</span>
+              </label>
+              <p id="ai-status" role="status" aria-live="polite">Checking the optional Gemini connection…</p>
+            </div>
+          </div>
+
+          <div class="visit-cards">
+            <form class="visit-card teach-card" id="skill-form">
+              <div class="card-icon skill-icon" aria-hidden="true">✳</div>
+              <p class="eyebrow">a skill to share</p>
+              <h3>Teach Sublyime</h3>
+              <p class="card-description">What’s something you know how to do?</p>
+              <label class="sr-only" for="skill-input">A skill to teach</label>
+              <div class="input-row">
+                <input id="skill-input" name="skill" type="text" maxlength="48" placeholder="e.g. fold a paper crane" required>
+                <button class="icon-button" type="submit" aria-label="Share this skill">↗</button>
+              </div>
+              <p class="form-message" id="skill-message" aria-live="polite"></p>
+              <div class="learned-list" id="skill-list" aria-label="Skills shared with Sublyime"></div>
+            </form>
+
+            <form class="visit-card wish-card" id="wish-form">
+              <div class="card-icon wish-icon" aria-hidden="true">♡</div>
+              <p class="eyebrow">a wish for its little world</p>
+              <h3>Sublyime’s wishlist</h3>
+              <p class="card-description">What might it want, or need, someday?</p>
+              <label class="sr-only" for="wish-input">A wish for Sublyime</label>
+              <div class="input-row wish-input-row">
+                <input id="wish-input" name="wish" type="text" maxlength="64" placeholder="a window to watch the rain" required>
+                <button class="icon-button" type="submit" aria-label="Add this wish">↗</button>
+              </div>
+              <div class="wish-types" role="group" aria-label="Choose whether this is something Sublyime wants or needs">
+                <label><input type="radio" name="wish-type" value="want" checked><span>♡ wants</span></label>
+                <label><input type="radio" name="wish-type" value="need"><span>✳ needs</span></label>
+              </div>
+              <p class="form-message" id="wish-message" aria-live="polite"></p>
+              <ul class="wish-list" id="wish-list" aria-label="Things on Sublyime’s wishlist"></ul>
+            </form>
+          </div>
+        </section>
+
+        <section class="about-strip" id="about" aria-labelledby="about-title">
+          <div class="about-mark" aria-hidden="true">✳</div>
+          <div>
+            <p class="eyebrow">a note about this little beginning</p>
+            <h2 id="about-title">A creature, still becoming.</h2>
+            <p>This is Sublyime’s first little home. Its world uses a shared map and database; each visitor’s explorer stays in their own browser. Its wandering and needs follow gentle local rules; optional Gemini thoughts are generated only after a visitor opts in. It is not sentient, moves while visitors are present, and does not run as a background process.</p>
+          </div>
+          <div class="about-stats">
+            <span class="stat-number" id="creation-count">0</span>
+            <span class="stat-label">little things<br>made here</span>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <a class="wordmark footer-wordmark" href="#home"><span class="wordmark-mark" aria-hidden="true">✳</span><span>sublyime</span></a>
+        <span>made of wonder, kept close</span>
+        <a class="back-top" href="#home">back to the beginning ↑</a>
+      </footer>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
